@@ -1,0 +1,443 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Profile
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: "Poppins", sans-serif;
+    }
+   /* Hide scrollbar for glider content */
+   #gliderContent::-webkit-scrollbar {
+     width: 6px;
+   }
+   #gliderContent::-webkit-scrollbar-thumb {
+     background-color: rgba(255,255,255,0.2);
+     border-radius: 3px;
+   }
+  </style>
+ </head>
+ <body class="bg-[#0c0c0c] text-white min-h-screen">
+  <div class="max-w-md mx-auto px-4 pt-3 pb-10 relative">
+   <!-- Top bar -->
+   <div class="flex items-center justify-between py-3">
+    <div class="flex items-center space-x-3">
+     <button aria-label="Back" id="backButton" class="text-white text-2xl leading-none">
+      ←
+     </button>
+     <h1 class="font-semibold text-lg">
+      Profile
+     </h1>
+    </div>
+    <button aria-label="Support" class="flex items-center space-x-2 border border-gray-700 rounded-full px-3 py-1 text-gray-500 text-sm" onclick="openGlider('support')">
+     <i class="far fa-comment-alt text-gray-500">
+     </i>
+     <span>
+      support
+     </span>
+    </button>
+   </div>
+   <!-- Profile info -->
+   <form id="profileForm" class="flex items-center space-x-4 mt-4" onsubmit="saveProfile(event)">
+    <img alt="Profile image of a man wearing a blue shirt standing against a brick wall" class="w-16 h-16 rounded-full object-cover" height="64" src="https://storage.googleapis.com/a1aa/image/ec6b3764-7979-47fe-5998-befdb012188a.jpg" width="64"/>
+    <div class="flex-1">
+     <p class="font-semibold text-lg leading-tight flex items-center space-x-2">
+      <input aria-label="First name" id="firstName" name="firstName" type="text" value="Steve" required class="bg-transparent border-b border-gray-600 focus:border-white outline-none text-white text-lg font-semibold w-24 sm:w-32"/>
+      <input aria-label="Last name" id="lastName" name="lastName" type="text" value="Dumble" required class="bg-transparent border-b border-gray-600 focus:border-white outline-none text-white text-lg font-normal w-24 sm:w-32"/>
+     </p>
+     <p class="text-gray-400 text-sm" id="memberSinceText">
+      member since Jan, 2022
+     </p>
+    </div>
+    <button aria-label="Save profile" type="submit" class="bg-green-600 hover:bg-green-700 rounded px-4 py-2 text-white font-semibold">
+     Save
+    </button>
+   </form>
+   <!-- CRED garage box -->
+   <button aria-label="CRED garage" class="border border-gray-700 rounded-md mt-6 p-4 flex items-center space-x-4 w-full text-left hover:bg-gray-900" onclick="openGlider('credGarage')" type="button">
+    <div class="border border-gray-700 rounded-full p-3 flex items-center justify-center">
+     <i class="fas fa-car text-white text-lg">
+     </i>
+    </div>
+    <div class="flex-1">
+     <p class="text-gray-400 text-sm leading-tight">
+      get to know your vehicles, inside out
+     </p>
+     <p class="font-semibold text-base flex items-center space-x-1">
+      <span>
+       CRED garage
+      </span>
+      <span class="text-lg">
+       →
+      </span>
+     </p>
+    </div>
+   </button>
+   <!-- Credit score, cashback, bank balance -->
+   <div class="mt-6 space-y-4">
+    <button aria-label="Credit score refresh available 800" class="flex items-center justify-between border-b border-gray-700 pb-3 w-full text-left hover:bg-gray-900" onclick="openGlider('creditScore')" type="button">
+     <div class="flex items-center space-x-3 text-gray-400 text-sm">
+      <i class="far fa-clock text-gray-400">
+      </i>
+      <span>
+       credit score
+      </span>
+      <span class="text-green-500 font-semibold tracking-widest">
+       • REFRESH AVAILABLE
+      </span>
+     </div>
+     <div class="flex items-center space-x-2 font-semibold text-white">
+      <span>
+       800
+      </span>
+      <span class="text-lg">
+       →
+      </span>
+     </div>
+    </button>
+    <button aria-label="Lifetime cashback ₹150" class="flex items-center justify-between border-b border-gray-700 pb-3 w-full text-left hover:bg-gray-900" onclick="openGlider('cashback')" type="button">
+     <div class="flex items-center space-x-3 text-gray-400 text-sm">
+      <i class="fas fa-rupee-sign text-gray-400">
+      </i>
+      <span>
+       lifetime cashback
+      </span>
+     </div>
+     <div class="flex items-center space-x-2 font-semibold text-white">
+      <span>
+       ₹150
+      </span>
+      <span class="text-lg">
+       →
+      </span>
+     </div>
+    </button>
+    <button aria-label="Bank balance ₹12,345" class="flex items-center justify-between border-b border-gray-700 pb-3 w-full text-left hover:bg-gray-900" onclick="openGlider('bankBalance')" type="button">
+     <div class="flex items-center space-x-3 text-gray-400 text-sm">
+      <i class="fas fa-wallet text-gray-400">
+      </i>
+      <span>
+       bank balance
+      </span>
+     </div>
+     <div class="flex items-center space-x-2 font-semibold text-white">
+      <span>
+       ₹12,345
+      </span>
+      <span class="text-lg">
+       →
+      </span>
+     </div>
+    </button>
+   </div>
+   <!-- Rewards & Benefits -->
+   <section class="mt-8">
+    <h2 aria-label="Your rewards and benefits" class="text-gray-700 font-semibold tracking-widest text-xs mb-4">
+     YOUR REWARDS &amp; BENEFITS
+    </h2>
+    <button aria-label="Cashback balance ₹500" class="border-b border-gray-700 py-3 flex justify-between items-center cursor-pointer w-full text-left hover:bg-gray-900" onclick="openGlider('cashbackBalance')" type="button">
+     <div>
+      <p class="font-semibold text-white text-base">
+       cashback balance
+      </p>
+      <p class="text-gray-500 text-sm">
+       ₹500
+      </p>
+     </div>
+     <span class="text-gray-500 text-lg">
+      ›
+     </span>
+    </button>
+    <button aria-label="Coins 1,234,567" class="border-b border-gray-700 py-3 flex justify-between items-center cursor-pointer w-full text-left hover:bg-gray-900" onclick="openGlider('coins')" type="button">
+     <div>
+      <p class="font-semibold text-white text-base">
+       coins
+      </p>
+      <p class="text-gray-500 text-sm">
+       1,234,567
+      </p>
+     </div>
+     <span class="text-gray-500 text-lg">
+      ›
+     </span>
+    </button>
+    <button aria-label="Win upto Rs 2000 refer and earn" class="border-b border-gray-700 py-3 flex justify-between items-center cursor-pointer w-full text-left hover:bg-gray-900" onclick="openGlider('winUpto')" type="button">
+     <div>
+      <p class="font-semibold text-white text-base">
+       win upto Rs 2000
+      </p>
+      <p class="text-gray-500 text-sm">
+       refer and earn
+      </p>
+     </div>
+     <span class="text-gray-500 text-lg">
+      ›
+     </span>
+    </button>
+   </section>
+   <!-- Transactions & Support -->
+   <section class="mt-8">
+    <h2 aria-label="Transactions and support" class="text-gray-700 font-semibold tracking-widest text-xs mb-4">
+     TRANSACTIONS &amp; SUPPORT
+    </h2>
+    <button aria-label="All transactions" class="border-b border-gray-700 py-3 flex justify-between items-center cursor-pointer w-full text-left hover:bg-gray-900" onclick="openGlider('allTransactions')" type="button">
+     <p class="font-semibold text-white text-base">
+      all transactions
+     </p>
+     <span class="text-gray-500 text-lg">
+      ›
+     </span>
+    </button>
+   </section>
+
+   <!-- Glider Overlay -->
+   <div id="gliderOverlay" class="fixed inset-0 bg-black bg-opacity-90 backdrop-blur-sm z-50 hidden flex flex-col">
+    <div class="flex items-center justify-between p-4 border-b border-gray-700">
+     <button aria-label="Previous" id="gliderPrev" class="text-white text-3xl font-bold px-3 hover:text-gray-400" onclick="redirectToProfilePage()">
+      ‹
+     </button>
+     <h3 id="gliderTitle" class="text-white font-semibold text-lg">
+      Title
+     </h3>
+     <button aria-label="Next" id="gliderNext" class="text-white text-3xl font-bold px-3 hover:text-gray-400" onclick="gliderNext()">
+      ›
+     </button>
+    </div>
+    <div id="gliderContent" class="p-6 flex-1 overflow-auto text-white text-base">
+     Content
+    </div>
+    <button aria-label="Close" class="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-400" onclick="closeGlider()">
+     ×
+    </button>
+   </div>
+  </div>
+
+  <script>
+   // Data for glider content for each feature
+    const gliderData = [
+      {
+        id: "support",
+        title: "Support",
+        content: `
+          <p>Welcome to support! How can we assist you today?</p>
+          <ul class="list-disc list-inside mt-3 space-y-1">
+            <li>FAQs</li>
+            <li>Contact Us</li>
+            <li>Report an Issue</li>
+          </ul>
+        `
+      },
+      {
+        id: "credGarage",
+        title: "CRED Garage",
+        content: `
+          <p>Manage your vehicles and get insights inside out.</p>
+          <ul class="list-disc list-inside mt-3 space-y-1">
+            <li>View all your vehicles</li>
+            <li>Track maintenance schedules</li>
+            <li>Get personalized offers</li>
+          </ul>
+        `
+      },
+      {
+        id: "creditScore",
+        title: "Credit Score",
+        content: `
+          <p>Your current credit score is <strong>800</strong>.</p>
+          <p>Refresh your score anytime to get the latest updates.</p>
+          <button class="mt-4 px-4 py-2 bg-green-600 rounded hover:bg-green-700" onclick="alert('Refreshing credit score...')">Refresh Now</button>
+        `
+      },
+      {
+        id: "cashback",
+        title: "Lifetime Cashback",
+        content: `
+          <p>You have earned a lifetime cashback of <strong>₹150</strong>.</p>
+          <p>Use your cashback on eligible purchases.</p>
+        `
+      },
+      {
+        id: "bankBalance",
+        title: "Bank Balance",
+        content: `
+          <p>Your linked bank account balance is <strong>₹12,345</strong>.</p>
+          <p>Check your transactions and manage your account.</p>
+        `
+      },
+      {
+        id: "cashbackBalance",
+        title: "Cashback Balance",
+        content: `
+          <p>Your current cashback balance is <strong>₹500</strong>.</p>
+          <p>Redeem your cashback on your next purchase.</p>
+        `
+      },
+      {
+        id: "coins",
+        title: "Coins",
+        content: `
+          <p>You have <strong>1,234,567</strong> coins.</p>
+          <p>Use coins to unlock exclusive rewards and benefits.</p>
+        `
+      },
+      {
+        id: "winUpto",
+        title: "Win Upto Rs 2000",
+        content: `
+          <p>Refer friends and earn rewards up to Rs 2000.</p>
+          <p>Share your referral code and start earning today!</p>
+        `
+      },
+      {
+        id: "allTransactions",
+        title: "All Transactions",
+        content: `
+          <p>View all your transactions in one place.</p>
+          <ul class="list-disc list-inside mt-3 space-y-1 max-h-48 overflow-auto">
+            <li>₹500 cashback on 12th May</li>
+            <li>₹1500 spent on 10th May</li>
+            <li>₹200 coins earned on 8th May</li>
+            <li>₹300 cashback on 5th May</li>
+            <li>₹1000 spent on 1st May</li>
+          </ul>
+        `
+      }
+    ];
+
+    let currentGliderIndex = 0;
+
+    function openGlider(id) {
+      const overlay = document.getElementById('gliderOverlay');
+      const titleEl = document.getElementById('gliderTitle');
+      const contentEl = document.getElementById('gliderContent');
+
+      // Find index of the id in gliderData
+      currentGliderIndex = gliderData.findIndex(item => item.id === id);
+      if (currentGliderIndex === -1) return;
+
+      const data = gliderData[currentGliderIndex];
+      titleEl.innerHTML = data.title;
+      contentEl.innerHTML = data.content;
+
+      overlay.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeGlider() {
+      const overlay = document.getElementById('gliderOverlay');
+      overlay.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function gliderPrev() {
+      if (currentGliderIndex === 0) {
+        currentGliderIndex = gliderData.length - 1;
+      } else {
+        currentGliderIndex--;
+      }
+      updateGliderContent();
+    }
+
+    function gliderNext() {
+      if (currentGliderIndex === gliderData.length - 1) {
+        currentGliderIndex = 0;
+      } else {
+        currentGliderIndex++;
+      }
+      updateGliderContent();
+    }
+
+    function updateGliderContent() {
+      const titleEl = document.getElementById('gliderTitle');
+      const contentEl = document.getElementById('gliderContent');
+      const data = gliderData[currentGliderIndex];
+      titleEl.innerHTML = data.title;
+      contentEl.innerHTML = data.content;
+    }
+
+    // Save profile form handler
+    function saveProfile(event) {
+      event.preventDefault();
+      const firstNameInput = document.getElementById('firstName');
+      const lastNameInput = document.getElementById('lastName');
+      const memberSinceEl = document.getElementById('memberSinceText');
+
+      // Save to localStorage
+      const profile = {
+        firstName: firstNameInput.value.trim(),
+        lastName: lastNameInput.value.trim(),
+        memberSince: new Date().toISOString()
+      };
+      localStorage.setItem('profile', JSON.stringify(profile));
+
+      // Update member since text
+      updateMemberSinceText(profile.memberSince);
+
+      // Show a small confirmation (optional)
+      alert('Profile saved!');
+    }
+
+    // Update member since text to current month and year or saved date
+    function updateMemberSinceText(dateString) {
+      const memberSinceEl = document.getElementById('memberSinceText');
+      let date;
+      if (dateString) {
+        date = new Date(dateString);
+      } else {
+        date = new Date();
+      }
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const month = monthNames[date.getMonth()];
+      const year = date.getFullYear();
+      memberSinceEl.textContent = `member since ${month}, ${year}`;
+    }
+
+    // Load profile from localStorage on page load
+    function loadProfile() {
+      const profileStr = localStorage.getItem('profile');
+      if (profileStr) {
+        try {
+          const profile = JSON.parse(profileStr);
+          if (profile.firstName) document.getElementById('firstName').value = profile.firstName;
+          if (profile.lastName) document.getElementById('lastName').value = profile.lastName;
+          if (profile.memberSince) {
+            updateMemberSinceText(profile.memberSince);
+          } else {
+            updateMemberSinceText();
+          }
+        } catch {
+          updateMemberSinceText();
+        }
+      } else {
+        updateMemberSinceText();
+      }
+    }
+
+    // Redirect to profile page when gliderPrev button is pressed
+    function redirectToProfilePage() {
+      // For demo, redirect to the same page (simulate profile page)
+      window.location.href = window.location.href;
+    }
+
+    // Attach event listener to back button for consistency
+    document.addEventListener('DOMContentLoaded', () => {
+      const backBtn = document.getElementById('backButton');
+      if (backBtn) {
+        backBtn.addEventListener('click', redirectToProfilePage);
+      }
+    });
+
+    // Initialize on load
+    window.onload = () => {
+      loadProfile();
+    };
+  </script>
+ </body>
+</html>
